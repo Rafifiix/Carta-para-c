@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Para usted ♡</title>
+
+<style>
+• {
+box-sizing: border-box;
+}
+
+body {
+margin: 0;
+min-height: 100vh;
+background: radial-gradient(circle at center, #292929, #080808);
+font-family: Georgia, serif;
+color: #222;
+overflow-x: hidden;
+}
+
+/* PANTALLA INICIAL */
+.inicio {
+min-height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+text-align: center;
+padding: 25px;
+}
+
+.sobre {
+animation: aparecer 1.5s ease;
+}
+
+.corazon {
+font-size: 75px;
+animation: latir 1.5s infinite;
+}
+
+.sobre h1 {
+color: white;
+font-size: 28px;
+margin: 15px 0 8px;
+}
+
+.sobre p {
+color: #ccc;
+font-size: 16px;
+}
+
+button {
+border: none;
+border-radius: 30px;
+padding: 14px 25px;
+font-size: 16px;
+cursor: pointer;
+background: #fff;
+color: #111;
+margin-top: 15px;
+box-shadow: 0 5px 20px #000;
+}
+
+button:active {
+transform: scale(0.95);
+}
+
+/* CARTA */
+.carta-contenedor {
+display: none;
+min-height: 100vh;
+padding: 25px 12px;
+justify-content: center;
+align-items: flex-start;
+}
+
+.carta {
+width: 100%;
+max-width: 750px;
+background: #f5eee1;
+padding: 35px 25px;
+border-radius: 4px;
+box-shadow: 0 0 35px rgba(0,0,0,.7);
+animation: cartaAparece 1.2s ease;
+}
+
+.titulo {
+text-align: center;
+font-size: 29px;
+margin-bottom: 30px;
+color: #222;
+}
+
+.texto p {
+font-size: 17px;
+line-height: 1.75;
+margin-bottom: 22px;
+text-align: left;
+opacity: 0;
+transform: translateY(15px);
+animation: textoAparece .8s ease forwards;
+}
+
+.texto p:nth-child(1) { animation-delay: .2s; }
+.texto p:nth-child(2) { animation-delay: .4s; }
+.texto p:nth-child(3) { animation-delay: .6s; }
+.texto p:nth-child(4) { animation-delay: .8s; }
+.texto p:nth-child(5) { animation-delay: 1s; }
+.texto p:nth-child(6) { animation-delay: 1.2s; }
+.texto p:nth-child(7) { animation-delay: 1.4s; }
+.texto p:nth-child(8) { animation-delay: 1.6s; }
+.texto p:nth-child(9) { animation-delay: 1.8s; }
+.texto p:nth-child(10) { animation-delay: 2s; }
+.texto p:nth-child(11) { animation-delay: 2.2s; }
+.texto p:nth-child(12) { animation-delay: 2.4s; }
+.texto p:nth-child(13) { animation-delay: 2.6s; }
+.texto p:nth-child(14) { animation-delay: 2.8s; }
+.texto p:nth-child(15) { animation-delay: 3s; }
+.texto p:nth-child(16) { animation-delay: 3.2s; }
+.texto p:nth-child(17) { animation-delay: 3.4s; }
+.texto p:nth-child(18) { animation-delay: 3.6s; }
+.texto p:nth-child(19) { animation-delay: 3.8s; }
+.texto p:nth-child(20) { animation-delay: 4s; }
+.texto p:nth-child(21) { animation-delay: 4.2s; }
+.texto p:nth-child(22) { animation-delay: 4.4s; }
+.texto p:nth-child(23) { animation-delay: 4.6s; }
+
+.final {
+text-align: center !important;
+font-size: 20px !important;
+margin-top: 35px !important;
+}
+
+/* BOTÓN MÚSICA */
+.musica {
+position: fixed;
+right: 15px;
+bottom: 15px;
+background: rgba(255,255,255,.9);
+padding: 10px 15px;
+border-radius: 25px;
+font-size: 14px;
+}
+
+/* CORAZONES */
+.corazon-flotante {
+position: fixed;
+bottom: -30px;
+font-size: 20px;
+animation: subir 5s linear forwards;
+pointer-events: none;
+}
+
+/* ANIMACIONES */
+@keyframes aparecer {
+from {
+opacity: 0;
+transform: scale(.8);
+}
+to {
+opacity: 1;
+transform: scale(1);
+}
+}
+
+@keyframes latir {
+0%,100% { transform: scale(1); }
+50% { transform: scale(1.15); }
+}
+
+@keyframes cartaAparece {
+from {
+opacity: 0;
+transform: translateY(30px);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+
+@keyframes textoAparece {
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+
+@keyframes subir {
+from {
+transform: translateY(0) rotate(0deg);
+opacity: 1;
+}
+to {
+transform: translateY(-110vh) rotate(360deg);
+opacity: 0;
+}
+}
+
+@media (max-width: 500px) {
+.carta {
+padding: 28px 19px;
+}
+
+.titulo {
+font-size: 25px;
+}
+
+.texto p {
+font-size: 16px;
+line-height: 1.7;
+}
+}
+</style>
+</head>
+
+<body>
+
+<!-- INICIO -->
+<div class="inicio" id="inicio">
+
+<div class="sobre">
+
+<div class="corazon">🖤</div>
+
+<h1>Hay algo para usted</h1>
+
+<p>Abra cuando esté listo...</p>
+
+<button onclick="abrirCarta()">
+Abrir mi carta
+</button>
+
+</div>
+
+</div>
+
+
+<!-- CARTA -->
+<div class="carta-contenedor" id="carta">
+
+<div class="carta">
+
+<h1 class="titulo">
+Feliz cumpleaños 20!! 🙊💗
+</h1>
+
+<div class="texto">
+
+<p>
+Me hubiera gustado hacer algo diferente y más llamativo, pero por desgracia no hay un presupuesto muy bueno. Aún así, quería darle algo aunque fuera mínimo que pudiera expresar todo el amor y orgullo que siento por usted.
+</p>
+
+<p>
+Cuando recién comenzamos a hablar, jamás se me pasó por la cabeza que llegaríamos hasta aquí, lo cual es curioso ya que ahora no me imagino cómo sería no tenerlo. Recuerdo las primeras fotos, las primeras llamadas e incluso las primeras veces que usted me decía cosas lindas y yo me ponía toda nerviosa, pero en ese entonces me costaba admitirlo.
+</p>
+
+<p>
+Pero lo que más me gusta recordar es ese audio que me mandó todo tomado y me dijo que me amaba, ese momento se me quedó guardado. De hecho esa misma noche le conté a la mari lo que había ocurrido.
+Yo sé que es algo absurdo pero es algo que no puedo olvidar.
+Esa noche me costó dormir ya que estaba toda nerviosa y llena de incertidumbre porque no sabía cómo reaccionar y que decir, así que espere hasta el día siguiente y sacar el tema.
+</p>
+
+<p>
+La verdad corazón es que no sé cómo explicar todo lo que siento por usted.
+Ya que por desgracia no nos hemos visto directamente, pero increíblemente la distancia no fue impedimento ya que usted logró tocar mi corazón de una forma genuina e indescriptible que me hace querer llorar.
+</p>
+
+<p>
+A mi parecer, cada mensaje, risa, llanto, silencio, preocupación y mini escenas de dramatización han sido fundamentales para seguir aquí.
+Conocerlo cada día más hace que mi corazón y cuerpo se sientan diferentes. Ya no estoy 24/7 en alerta, suelo estar más tranquila, porque usted me está brindando esa paz que tanto esperé. Y creo que esa es una de las cosas que más valoró de tenerlo en mi vida.
+</p>
+
+<p>
+También valoró muchísimo el hecho de que permanezca a mi lado a pesar de que muchas veces está cansado consigo mismo.
+Estoy orgullosa de usted corazón, porque sé lo mucho que cuesta seguir de pie incluso cuando siente que no da más.
+</p>
+
+<p>
+Vale tanto corazón, usted es más que suficiente y jamás me hará pensar lo contrario.
+Por eso nunca en la vida sienta inseguridad de lo que siento por usted, porque me faltaría arrancarme el corazón y dárselo.
+</p>
+
+<p>
+Cada vez que sienta que no entiende lo que sucede con usted venga a mi. Yo sé que no es lo mismo que estar físicamente a su lado, créame que lo sé muy bien, pero mientras es así y por eso quiero que sepa que siempre puede encontrarme aquí, no me iré y siempre estaré para usted.
+No pierdo la esperanza de que todo será diferente y de que llegara el día en el que cuando usted se sienta chato del mundo vendrá hacía mis brazos para buscar un poco de tranquilidad.
+</p>
+
+<p>
+Sé que muchas veces soy demasiado empalagosa y "tonta", pero es que me siento tan bien con usted que no siento necesidad de ocultar cómo soy.
+</p>
+
+<p>
+Con usted puedo hablar de cualquier cosa aunque muchas veces no las entienda usted me sigue escuchando.
+Y eso me llena el corazoncito.
+</p>
+
+<p>
+Sé que usted es una persona que ha pasado por muchas cosas las cuales no merecía. Y desearía tanto poder cambiar su pasado, pero por más que quiera sé que no puedo. Aunque lo que si puedo es ayudarlo a sanar en el presente e ir planeando un futuro.
+</p>
+
+<p>
+Y es que amo tanto cada parte de usted, tanto en personalidad cómo en fisico.
+Amo su fuerza para seguir, amo su forma de expresarse sobre las cosas que le gustan, amo sus ojos, sus tatuajes, su voz, su nariz, su ceño fruncido, sus aros, su personalidad y su gran gusto para vestirse.
+Amo cada parte de usted. Entiéndalo.
+</p>
+
+<p>
+Hay veces en las que siento inseguridad al decirlo tanto, ya que me da miedo chatearlo con tantos "lo amo", pero es que es tanto que estoy llorando mientras escribo todo esto.
+</p>
+
+<p>
+Corazón yo le pido paciencia. Paciencia para el día en el que por fin podamos estar juntos lejos de todos. Paciencia por mi forma de ser, para mi forma de amar, para mis inseguridades y para mi intensidsd con sensibilidad que muchas veces siento un problema.
+Espéreme con paciencia mientras me ama.
+</p>
+
+<p>
+Muchas veces mi alma es un caos y entiendo que la suya igual, pero por eso quiero que mi alma pueda calmar a la suya y la suya a la mía. Quiero que podamos ser ese lugar de tranquilidad que ambos necesitamos.
+</p>
+
+<p>
+Lo amo en la distancia, lo amo en voz y alma.
+¡Lo amo siempre!
+</p>
+
+<p>
+Por eso deseo que este nuevo año sea diferente, que pueda aprender nuevas cosas y que sea más llevadero. Deseo que pueda encontrar motivos para seguir adelante y disfrutar de las cosas que ama y recordar siempre lo mucho que usted vale.
+</p>
+
+<p>
+Y recuerde siempre que si el mundo se pone en contra de usted, yo estaré a su lado para que el mundo este en contra de los dos, porque somos dos. Esto no se basa en que solo uno este para el otro, se basa en algo mutuo. En acompañarnos, escucharnos, cuidarnos y seguir aprendiendo el uno del otro.
+</p>
+
+<p class="final">
+Feliz cumpleaños corazón, estoy feliz y orgullosa de usted todos los días 🕷🖤
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- MÚSICA -->
+<audio id="audio" loop>
+<source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<button class="musica" id="botonMusica" onclick="musica()">
+🎵 Música
+</button>
+
+
+<script>
+
+function abrirCarta() {
+
+document.getElementById("inicio").style.display = "none";
+
+document.getElementById("carta").style.display = "flex";
+
+crearCorazones();
+
+let audio = document.getElementById("audio");
+
+audio.play().catch(() => {});
+
+}
+
+
+function musica() {
+
+let audio = document.getElementById("audio");
+
+if (audio.paused) {
+
+audio.play();
+
+document.getElementById("botonMusica").innerHTML = "🔊 Música";
+
+} else {
+
+audio.pause();
+
+document.getElementById("botonMusica").innerHTML = "🔇 Música";
+
+}
+
+}
+
+
+function crearCorazones() {
+
+setInterval(() => {
+
+let corazon = document.createElement("div");
+
+corazon.className = "corazon-flotante";
+
+corazon.innerHTML = Math.random() > .5 ? "🖤" : "♡";
+
+corazon.style.left = Math.random() * 100 + "vw";
+
+corazon.style.fontSize =
+(15 + Math.random() * 20) + "px";
+
+corazon.style.animationDuration =
+(4 + Math.random() * 4) + "s";
+
+document.body.appendChild(corazon);
+
+setTimeout(() => {
+corazon.remove();
+}, 8000);
+
+}, 700);
+
+}
+
+</script>
+
+</body>
+</html>
